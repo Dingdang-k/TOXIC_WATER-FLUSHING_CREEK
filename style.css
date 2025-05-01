@@ -1,0 +1,711 @@
+
+
+#map {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+  }
+  
+  /* TOXIC 封面叠层 */
+  #overlay {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  #toxic-title {
+    font-size: 20rem;
+    font-weight: 900;
+    font-family: "Noto Sans", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.03rem;
+    color: rgba(0, 0, 0, 0.85);
+    animation: breathing 8s ease-in-out infinite;
+  }
+  
+  @keyframes breathing {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+  }
+  
+  .red-x {
+    color: red;
+    opacity: 60%;
+    font-size: 1.2em;
+    position: relative;
+    top: 20%;
+    pointer-events: none;
+  }
+  
+  #toxic-subtitle {
+    font-size: 0.3em;
+    font-weight: 900;
+    color: #555;
+    letter-spacing: 0.2em;
+    margin-top: -0.5em;
+    z-index: 22;
+  }
+
+  #auther-name {
+    font-size: 0.05em;
+    font-weight: 400;
+    color: #555;
+    letter-spacing: 0.2em;
+    margin-top: -0.5em;
+  }
+  
+  #creek-label {
+    margin-top: 16em;
+    font-size: 1.2em;
+    color: #333;
+    transition: transform 0.5s ease;
+  }
+  
+  #creek-label:hover {
+    transform: scale(1.1);
+  }
+  
+  /* 小箭头 bounce 动效（仅装饰，不触发跳转） */
+  @keyframes arrow-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  
+  #down-arrow {
+    margin: 1em auto 0 auto;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 20px solid #999;
+    transition: transform 0.3s ease;
+    cursor: default;
+    animation: arrow-bounce 2s infinite;
+  }
+  
+  #down-arrow:hover {
+    transform: scale(1.3);
+    border-top-color: #666;
+  }
+  
+  #story {
+    width: 100%;
+    max-width: auto;
+    margin: 0;
+    padding: 0 0 0 0;
+    z-index: 7;
+    background: transparent;
+    pointer-events: auto;
+    opacity: 1;
+  }
+  
+  
+  /* 每个章节 step 样式 */
+  .step {
+    min-height: 100vh;
+    margin: 0 auto 0rem auto;
+    padding: 0rem;
+    background: white;
+    border-radius: 0px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+  }
+  
+ 
+   
+
+  
+  /* 滚动后 TOXIC 标题渐隐上滑动画 */
+  .fade-out-up {
+    animation: fadeOutUp 1s ease forwards;
+  }
+  
+  @keyframes fadeOutUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  }
+  
+
+  
+  .scroll-image {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .step.is-active .scroll-image {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+  .image-caption-box {
+    position: absolute;
+    bottom: -100%;
+    right: 10%;
+    background: white;
+    color: #222;
+    width: 400px;
+    padding: 1.2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(139, 139, 139, 0.15);
+    font-size: 0.95em;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 15;
+  }
+  .step.is-active .image-caption-box {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+  #legend {
+    position: absolute;
+    bottom: 2em;
+    left: 2em;
+    background: white;
+    padding: 1em;
+    font-size: 0.9em;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 99;
+  }
+  
+  .callout-box {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9em;
+    max-width: 300px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .callout-box img {
+    width: 100%;
+    border-radius: 4px;
+    margin: 0.5em 0;   
+  }
+  
+  .fixed-callout {
+    position: absolute;
+    z-index: 8;
+    background: white;
+    padding: 1em;
+    width: 240px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fixed-callout.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  
+  
+  .callout-box1 img {
+    width: 400px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: "Noto Sans", Noto Sans;
+    text-align: center;
+    margin: 10vh auto 2vh auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .step.is-active .section-title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .wetlands {
+    color: rgb(8, 93, 19);
+    opacity: 100%;
+    font-size: 4rem;
+    position: relative;
+    top: 10%;
+    pointer-events: none;
+  }
+  
+  .polluted-red {
+    color: rgb(175, 35, 35);
+    opacity: 100%;
+    font-size: 4rem;
+    position: relative;
+    top: 10%;
+    pointer-events: none;
+  }
+  
+ .Enterococcus{
+    color: rgb(167, 0, 0);
+    opacity: 100%;
+    font-size: 4rem;
+    position: relative;
+    top: 10%;
+    pointer-events: none;
+  }
+  
+  .map-legend.card-style {
+    position: absolute;
+    bottom: 2em;
+    left: 2em;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 0.9em;
+    color: #333;
+    width: 220px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  
+  .map-legend.card-style.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .map-legend .legend-title {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-size: 1em;
+  }
+
+  #polluted-legend {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1em;
+    border-radius: 6px;
+    max-width: 200px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 8;
+  }
+  
+  
+  .legend-gradient {
+    height: 14px;
+    border-radius: 5px;
+    background: linear-gradient(to right,
+      #ffffcc 0%, #ffeda0 25%, #feb24c 50%, #f03b20 75%, #bd0026 100%);
+    margin-bottom: 0.6em;
+  }
+  
+  .legend-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    color: #444;
+  }
+  
+  .water-callout {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    padding: 0.8em 1em;
+    max-width: 220px;
+    font-size: 0.85em;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.3s ease;
+
+  }
+  
+  .water-callout h4 {
+    margin: 0 0 0.5em;
+    font-size: 1em;
+  }
+  
+  .water-line {
+    position: absolute;
+    height: 2px;
+    background: repeating-linear-gradient(
+      to right,
+      #0077be,
+      #0077be 4px,
+      transparent 4px,
+      transparent 8px
+    );
+    transform-origin: 0 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+  
+
+  
+  .floating-chart-box {
+    position: absolute;
+    bottom: 27%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1em 2em; /* ⬅️可以加大左右 padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 120;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    max-width: 100vw; /* ✅ 控制 box 的最大宽度 */
+    width: 90vw;      /* ✅ 自动适配小屏，超不过 max */
+    text-align: center;
+  }
+  
+  .floating-chart-box.show {
+    opacity: 0.85;
+  }
+  
+  .chart-img {
+    width: 60%;      /* ✅ 自适应容器宽度 */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    opacity: 1;
+  }
+  
+  .floating-text-box {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5em 2em;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 130;
+    max-width: 600px;
+    width: 80vw;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .floating-text-box.show {
+    opacity: 1;
+  }
+  
+  
+  .what-led-title {
+    color: rgb(167, 0, 0);
+    opacity: 100%;
+    font-size: 4rem;
+    position: relative;
+    top: 0%;
+    pointer-events: none;
+    text-align: center;
+    font-size: 8rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  
+
+  .left-textbox {
+    position: relative;
+    top: 30%;
+    bottom: 30%;
+    left: 5%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    width: 300px;
+    z-index: 120;
+    font-size: 0.95em;
+    display: block;
+  }
+  
+  .left-textbox h2 {
+    margin-top: 0.5em;
+    font-size: 1.6em;
+  }
+
+  .left-textbox p1 {
+    margin-top: 0.5em;
+    font-size: 0.5em;
+  }
+
+  .left-textbox p3 {
+    margin-top: 0.5em;
+    font-size: 0.5em;
+    text-align: justify;
+  }
+  
+  .floating-legend-box {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    background: rgba(255,255,255,0.95);
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 12000;
+    width: 15%; /* ✅ 增加宽度 */
+    max-width: 90vw; /* ✅ 让它在小屏幕也能适应 */
+  }
+  
+  .floating-legend-box img {
+    width: 100%; /* ✅ 图片占满父容器 */
+    height: auto;
+    display: block;
+  }
+  
+  
+  
+  #sources-legend {
+    display: none;
+  }
+  
+  .what-if-sea-level-title {
+    color: rgb(0, 88, 147);
+    opacity: 100%;
+    font-size: 4rem;
+    position: relative;
+    top: 0%;
+    pointer-events: none;
+    text-align: center;
+    font-size: 8rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .what-if-flooding {
+    color: rgb(0, 88, 147); /* 字体填充色 */
+    opacity: 100%;
+    font-size: 8rem;
+    position: relative;
+    top: 0%;
+    pointer-events: none;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+    -webkit-text-stroke: 2px rgb(255, 255, 255); /* ✅加了白色描边 */
+
+  }
+
+  .left2-textbox {
+    position: relative;
+    top: 30%;
+    bottom: 30%;
+    left: 5%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    width: 40%;
+    z-index: 120;
+    font-size: 0.95em;
+    display: block;
+  }
+  
+  .left2-textbox h2 {
+    margin-top: 0.5em;
+    font-size: 1.6em;
+  }
+
+  .left2-textbox p1 {
+    margin-top: 0.5em;
+    font-size: 0.8em;
+  }
+  
+
+  .center-textbox {
+    position: relative;
+    z-index: 120;
+    font-size: 0.95em;
+    padding: 1.5em;
+    border-radius: 0px;
+    width: 100%;
+    display: block;
+    background: transparent; /* 把主元素背景设为透明 */
+  }
+  
+  .center-textbox::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 0px;
+    background-color: white; /* 或其他颜色 */
+    opacity: 1; /* ✅ 只让背景透明 */
+    z-index: -1;  /* ✅ 放在文字内容后面 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  
+  
+  .center-textbox h2 {
+    margin-top: 0.5em;
+    font-size: 6em;
+    color: #0b4888; /* 文字颜色 */
+    text-align: center;
+
+  }
+
+  .center0-textbox {
+    position: relative;
+    z-index: 120;
+    font-size: 0.95em;
+    padding: 1.5em;
+    border-radius: 0px;
+    width: 98.5%;
+    display: block;
+    background: transparent; /* 把主元素背景设为透明 */
+  }
+  
+  .center0-textbox::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 0px;
+    background-color: white; /* 或其他颜色 */
+    opacity: 0.85; /* ✅ 只让背景透明 */
+    z-index: -1;  /* ✅ 放在文字内容后面 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  
+  
+  .center0-textbox h2 {
+    margin-top: 0.5em;
+    font-size: 4em;
+    color: #880b0b; /* 文字颜色 */
+    text-align: center;
+
+  }
+
+
+
+  .center2-textbox {
+    position: relative;
+    box-sizing: border-box;
+    z-index: 120;
+    font-size: 0.95em;
+    padding: 1.5em;
+    border-radius: 0px;
+    width: 100%;
+    display: block;
+    background: transparent; /* 把主元素背景设为透明 */
+  }
+  
+  .center2-textbox::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 0px;
+    background-color: white; /* 或其他颜色 */
+    opacity: 1; /* ✅ 只让背景透明 */
+    z-index: -1;  /* ✅ 放在文字内容后面 */
+    text-align: center;
+  }
+  
+  
+  .center2-textbox h2 {
+    margin-top: 0em;
+    font-size: 4em;
+    color: #0b4888; /* 文字颜色 */
+    text-align: center;
+
+  }
+
+  .long-collage {
+    position: relative;
+    z-index: 120;
+    font-size: 6rem;
+    padding: 0em;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-weight: bolder;
+    color: #00457a;
+  }
+
+  .link-container {
+    width: 100%;
+    text-align: center;         /* 两端对齐 */
+    display: block;
+    line-height: 2em;            /* 行距，拉开垂直空间 */
+    word-spacing: 10em;   
+    font-size: 2rem; 
+  
+  }
+
+  .link-container a {
+    text-decoration: none;       /* 去掉下划线 */
+    color: #333;                 /* 链接文字颜色 */
+    font-weight: bold;
+    word-spacing: 4rem ;
+  }
+
+
+ .more-info {
+    font-size: 1.5em;
+    font-weight: bolder;
+    color: #3d3d3d;
+    text-align: center;
+    margin-top: 2em;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .footer {
+    position:relative;
+    bottom: 0rem ;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1em;
+    text-align: center;
+    font-size: 0.8em;
+    color: #333;
+    z-index: 10000;
+  }
+
+
+  .left3-textbox {
+    position: relative;
+    top: 30%;
+    bottom: 30%;
+    left: 5%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    width: 30%;
+    z-index: 120;
+    font-size: 0.95em;
+    display: block;
+}
+
+.left3-textbox h2 {
+    margin-top: 0.5em;
+    font-size: 1.6em;
+}

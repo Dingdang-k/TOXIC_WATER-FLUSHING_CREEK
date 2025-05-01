@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title>TOXIC WATER - FLUSHING CREEK</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link rel="icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/mapbox-gl-globe-minimap@1.2.0/dist/bundle.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto+Condensed&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="map.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+</head>
+
+<body>
+  <!-- 地图 -->
+  <div id="map"></div>
+
+ <!-- 图例 -->
+ <div id="legend">Green: Public Parks & Ecological Spaces</div>
+ 
+  <div id="floating-text-box" class="floating-text-box">
+    <h3 class="floating-text-title">Rain, Bacteria, and Risk</h3>
+    <p class="floating-text-content">
+      On rainy days, stormwater carries pollutants into the creek. <br />
+      This results in a sharp increase in Enterococcus bacteria count.
+    </p>
+  </div>
+  
+  
+
+
+
+
+  <!-- 叠加封面（动画渐隐） -->
+  <div id="overlay">
+    <div id="toxic-title">
+      TO<span class="red-x">X</span>IC
+      <div id="toxic-subtitle">WATER</div>
+      <div id="auther-name">Haoyuan Kuang & Zekun Liu<br>Instructor : Juan Francisco Saldarriaga</div>
+    </div>
+    <div id="creek-label">
+      Water Pollution in Flushing Creek
+      <div id="down-arrow"></div> <!-- 只是装饰，不跳转 -->
+    </div>
+  </div>
+
+
+  
+
+  <!-- Story 章节容器 -->
+  <div id="story">
+    <div id="features"></div>
+  </div>
+
+
+  
+
+
+
+</body>
+
+
+
+</html>
