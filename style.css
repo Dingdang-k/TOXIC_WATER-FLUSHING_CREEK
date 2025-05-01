@@ -424,7 +424,8 @@
     pointer-events: none;
     text-align: center;
     font-size: 8rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
   }
 
   
@@ -494,7 +495,8 @@
     pointer-events: none;
     text-align: center;
     font-size: 8rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
   }
 
   .what-if-flooding {
@@ -505,7 +507,8 @@
     top: 0%;
     pointer-events: none;
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
     
     -webkit-text-stroke: 2px rgb(255, 255, 255); /* ✅加了白色描边 */
 
