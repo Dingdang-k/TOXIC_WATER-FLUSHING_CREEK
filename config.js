@@ -793,7 +793,7 @@ const config = [
      <br>
      What are we doing?
      <br>
-     What should we doing?</p>
+     What should we do?</p>
     
 
     
